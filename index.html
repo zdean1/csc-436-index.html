@@ -110,7 +110,9 @@
             }
             else {
                 //TODO:: REPLACE [chicagoStartups.reverse()] WITH A FUNCTION CALLED "chicagoStartupsReverse"
-                chicagoStartups.reverse().forEach( function(startup) {
+
+                //chicagoStartups.reverse().forEach( function(startup) {
+                chicagoStartupsReverse().forEach( function(startup) {
                     var childDiv = document.createElement('div');
                     var text = document.createTextNode(startup);
                     childDiv.appendChild(text);
@@ -122,6 +124,13 @@
 
     function chicagoStartupsReverse() {
         var reversedStartups = [];
+        var i = chicagoStartups.length - 1;
+
+        for (i; i>=0; i--) {
+            reversedStartups.push(chicagoStartups[i]);
+        }
+        return reversedStartups;
+
         /*
             TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
                   RETURN THE REVERSED ARRAY
@@ -133,7 +142,7 @@
                     DATA STRUTUCTURES REGARDLESS OF THE PROGRAMMING LANGUAGE
         
         */
-        return reversedStartups;
+        
     }
 
     function cleanAndCountCharacters() {

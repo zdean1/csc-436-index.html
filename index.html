@@ -109,6 +109,7 @@
                 });
             }
             else {
+                //DONE
                 //TODO:: REPLACE [chicagoStartups.reverse()] WITH A FUNCTION CALLED "chicagoStartupsReverse"
 
                 //chicagoStartups.reverse().forEach( function(startup) {
@@ -132,6 +133,7 @@
         return reversedStartups;
 
         /*
+            DONE
             TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
                   RETURN THE REVERSED ARRAY
 
@@ -147,7 +149,21 @@
 
     function cleanAndCountCharacters() {
         console.log('CLEAN AND COUNT CHARACTERS');
+
+        chicagoStartups.forEach(clean);
+
+
+        function clean(name) {
+            var startupName = name.trim().replace(/[^a-zA-Z0-9 ]/g, '');
+            console.log(startupName + ' ' + startupName.length);
+        }
+        
+
+
+
         /*
+            NOT DONE
+
             TODO: REMOVES ANY SPECIAL CHARACTERS FROM EACH COMPANY NAME AND
               DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
               DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
@@ -170,6 +186,8 @@
 
     function toggleDisplay() {
         /*
+        NOT DONE
+
         TODO: REVIEW THE CODE IN THE PROVIDED REVERSE EXAMPLE, USE JAVASCRIPT TO ADD A CLICKABLE BUTTON 
         CALLED "Toggle Display" ... WHEN THE USER CLICKS THE BUTTON, IT RENDERS THE DISPLAY OF THE COMPANY NAMES 
         FROM VERTICAL, TO HORIZONTAL.
@@ -195,6 +213,7 @@
         displayInstructions: true
     };
 
+    //NOT DONE
     //TODO INVOKE THIS ANONYMOUS FUNCTION TO DISPLAY HOMEWORK INSTRUCTIONS IN THE CONSOLE
     (function() {
         if (flags.displayInstructions) {

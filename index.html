@@ -81,6 +81,7 @@
         var rootDiv = document.createElement('div');
         rootDiv.id = 'rootContainer';
         var companyNamesContainer = document.createElement('div');
+        companyNamesContainer.id = "companyNamesContainer";
         chicagoStartups.forEach( function(chicagoStartup, index) {
             var childDiv = document.createElement('div');
             var text = document.createTextNode(index.toString().concat(' .) ').concat(chicagoStartup));
@@ -109,10 +110,8 @@
                 });
             }
             else {
-                //DONE
                 //TODO:: REPLACE [chicagoStartups.reverse()] WITH A FUNCTION CALLED "chicagoStartupsReverse"
 
-                //chicagoStartups.reverse().forEach( function(startup) {
                 chicagoStartupsReverse().forEach( function(startup) {
                     var childDiv = document.createElement('div');
                     var text = document.createTextNode(startup);
@@ -133,7 +132,6 @@
         return reversedStartups;
 
         /*
-            DONE
             TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
                   RETURN THE REVERSED ARRAY
 
@@ -149,21 +147,33 @@
 
     function cleanAndCountCharacters() {
         console.log('CLEAN AND COUNT CHARACTERS');
+        var cleanStartups = new Map();
 
         chicagoStartups.forEach(clean);
 
 
         function clean(name) {
-            var startupName = name.trim().replace(/[^a-zA-Z0-9 ]/g, '');
-            console.log(startupName + ' ' + startupName.length);
+            var cleanName = name.trim().replace(/[^a-zA-Z0-9 ]/g, '');
+            var cleanLength = cleanName.length;
+            cleanStartups.set(cleanName,cleanLength);
+
+            //cleanStartups[cleanName] = cleanLength;
+            //cleanStartups[startupNameLength] = cleanName.length;
+
+            //cleanStartups.push(startupName, startupName.length);
         }
-        
+        console.log(cleanStartups);
 
+        var cleanNameCount = document.getElementById("companyNamesContainer");
 
+        var i = 0; 
+        for (var[key, value] of cleanStartups.entries()){
+            cleanNameCount.childNodes.item(i).innerHTML = (i + " ). " + key + ": " + value); 
+            i++;      
+        }
 
+    
         /*
-            NOT DONE
-
             TODO: REMOVES ANY SPECIAL CHARACTERS FROM EACH COMPANY NAME AND
               DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
               DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL

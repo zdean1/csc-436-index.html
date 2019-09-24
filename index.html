@@ -192,6 +192,20 @@
         reverseButtonContainer.appendChild(reverseBtn);    
         document.getElementById('rootContainer').appendChild(reverseButtonContainer);
         document.getElementById('rootContainer').appendChild(reverseContainer);
+
+    }
+
+    function initToggle() {
+        var toggleContainer = document.createElement('div');
+        toggleContainer.id = 'toggleContainer';
+        var toggleBtn = document.createElement('button');
+        var toggleBtnTxt = document.createTextNode('Toggle');
+        toggleBtn.onclick = toggleDisplay;
+        toggleBtn.appendChild(toggleBtnTxt);
+        var toggleBtnContainer = document.createElement('div');
+        toggleBtnContainer.appendChild(toggleBtn);
+        document.getElementById('rootContainer').appendChild(toggleBtnContainer);
+        document.getElementById('rootContainer').appendChild(toggleContainer);
     }
 
     function toggleDisplay() {
@@ -216,6 +230,7 @@
     function run() {
         initDocument();
         initReverse();
+        initToggle();
     }
     run();
     

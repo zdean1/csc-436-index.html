@@ -2,7 +2,7 @@
 <html>
     <h3>Javascript Basics</h3>
     <button onclick="cleanAndCountCharacters()">
-        clean and count words
+        Clean and count characters
     </button>
     <body>
     </body>
@@ -67,6 +67,7 @@
         'Shiftgig',
         'ParkWhiz'
     ];
+    var cleanStartups = [];
 
     function clearDocument() {
         var rootDiv = document.getElementById('rootContainer');
@@ -93,7 +94,22 @@
         document.body.appendChild(rootDiv);
     }
 
+    function initReverse() {
+        var reverseContainer = document.createElement('div');
+        reverseContainer.id = 'reverseContainer';
+        var reverseBtn = document.createElement('button');
+        var btnText = document.createTextNode('Reverse');
+        reverseBtn.onclick = renderReversedElements;
+        reverseBtn.appendChild(btnText);
+        var reverseButtonContainer = document.createElement('div');
+        reverseButtonContainer.appendChild(reverseBtn);    
+        document.getElementById('rootContainer').appendChild(reverseButtonContainer);
+        document.getElementById('rootContainer').appendChild(reverseContainer);
+
+    }
+
     function renderReversedElements() {
+        console.log('REVERSE');
         var reverseContainer = document.getElementById('reverseContainer');
         var reversedChicagoStartups = [];
         if (reverseContainer) {
@@ -111,7 +127,6 @@
             }
             else {
                 //TODO:: REPLACE [chicagoStartups.reverse()] WITH A FUNCTION CALLED "chicagoStartupsReverse"
-
                 chicagoStartupsReverse().forEach( function(startup) {
                     var childDiv = document.createElement('div');
                     var text = document.createTextNode(startup);
@@ -157,13 +172,11 @@
             cleanStartups.set(cleanName,cleanLength);
 
         }
-        console.log(cleanStartups);
-
-        var cleanNameCount = document.getElementById("companyNamesContainer");
+        var companyNamesContainer = document.getElementById("companyNamesContainer");
 
         var i = 0; 
         for (var[name, length] of cleanStartups.entries()) {
-            cleanNameCount.childNodes.item(i).innerHTML = (i + " ). " + name + ": " + length); 
+            companyNamesContainer.childNodes.item(i).innerHTML = (i + " ). " + name + ": " + length); 
             i++;      
         }
         /*
@@ -173,20 +186,6 @@
         */
     }
     
-    function initReverse() {
-        var reverseContainer = document.createElement('div');
-        reverseContainer.id = 'reverseContainer';
-        var reverseBtn = document.createElement('button');
-        var btnText = document.createTextNode('Reverse');
-        reverseBtn.onclick = renderReversedElements;
-        reverseBtn.appendChild(btnText);
-        var reverseButtonContainer = document.createElement('div');
-        reverseButtonContainer.appendChild(reverseBtn);    
-        document.getElementById('rootContainer').appendChild(reverseButtonContainer);
-        document.getElementById('rootContainer').appendChild(reverseContainer);
-
-    }
-
     function initToggle() {
         var toggleContainer = document.createElement('div');
         toggleContainer.id = 'toggleContainer';
@@ -198,10 +197,10 @@
         toggleButtonContainer.appendChild(toggleBtn);    
         document.getElementById('rootContainer').appendChild(toggleButtonContainer);
         document.getElementById('rootContainer').appendChild(toggleContainer);
-
     }
 
     function renderToggleElements() {
+        console.log('TOGGLE');
         var toggleContainer = document.getElementById('toggleContainer');
         if (toggleContainer) {
             if (toggleContainer.hasChildNodes()) {
@@ -213,9 +212,7 @@
         }
     }
 
-
     function toggleDisplay() {
-        console.log(toggle);
         if (toggle == true) {
             for (i = 0; i < chicagoStartups.length; i++) {
                 chicagoStartups[i] = chicagoStartups[i].replace(/div/g, 'span');
@@ -224,16 +221,14 @@
             toggle = false;
         }
         else {
-
-        chicagoStartups.forEach( function(chicagoStartup, index) {
-            var childDiv = document.createElement('div');
-            var text = document.createTextNode(chicagoStartup);
-            childDiv.appendChild(text);
-            toggleContainer.appendChild(childDiv);
-        });
-        toggle = true;
-    }
-        return toggleContainer;
+            chicagoStartups.forEach( function(chicagoStartup, index) {
+                var childDiv = document.createElement('div');
+                var text = document.createTextNode(chicagoStartup);
+                childDiv.appendChild(text);
+                toggleContainer.appendChild(childDiv);
+            });
+            toggle = true;
+        }   
         /*
         TODO: REVIEW THE CODE IN THE PROVIDED REVERSE EXAMPLE, USE JAVASCRIPT TO ADD A CLICKABLE BUTTON 
         CALLED "Toggle Display" ... WHEN THE USER CLICKS THE BUTTON, IT RENDERS THE DISPLAY OF THE COMPANY NAMES 

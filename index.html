@@ -47,6 +47,7 @@
 </style>
 
 <script>
+    var toggle = true;
     var colors = ['red', 'blue', 'gold'];
     var chicagoStartups = [
         '  Interior   Define  ',
@@ -102,7 +103,6 @@
                     reverseContainer.removeChild(reverseContainer.lastChild);
                 }
                 reversedChicagoStartups.forEach(function(chicagoStartup, index) {
-                    console.log(chicagoStartup);
                     var childDiv = document.createElement('div');
                     var text = document.createTextNode(chicagoStartup);
                     childDiv.appendChild(text);
@@ -166,13 +166,11 @@
             cleanNameCount.childNodes.item(i).innerHTML = (i + " ). " + name + ": " + length); 
             i++;      
         }
-
         /*
             TODO: REMOVES ANY SPECIAL CHARACTERS FROM EACH COMPANY NAME AND
               DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
               DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
         */
-
     }
     
     function initReverse() {
@@ -193,24 +191,50 @@
         var toggleContainer = document.createElement('div');
         toggleContainer.id = 'toggleContainer';
         var toggleBtn = document.createElement('button');
-        var toggleBtnTxt = document.createTextNode('Toggle');
-        toggleBtn.onclick = toggleDisplay;
-        toggleBtn.appendChild(toggleBtnTxt);
-        var toggleBtnContainer = document.createElement('div');
-        toggleBtnContainer.appendChild(toggleBtn);
-        document.getElementById('rootContainer').appendChild(toggleBtnContainer);
+        var toggleText = document.createTextNode('Toggle');
+        toggleBtn.onclick = renderToggleElements;
+        toggleBtn.appendChild(toggleText);
+        var toggleButtonContainer = document.createElement('div');
+        toggleButtonContainer.appendChild(toggleBtn);    
+        document.getElementById('rootContainer').appendChild(toggleButtonContainer);
         document.getElementById('rootContainer').appendChild(toggleContainer);
+
     }
 
+    function renderToggleElements() {
+        var toggleContainer = document.getElementById('toggleContainer');
+        if (toggleContainer) {
+            if (toggleContainer.hasChildNodes()) {
+                while (toggleContainer.hasChildNodes()) {
+                    toggleContainer.removeChild(toggleContainer.lastChild);
+                }
+            }
+            toggleDisplay();
+        }
+    }
+
+
     function toggleDisplay() {
+        console.log(toggle);
+        if (toggle == true) {
+            for (i = 0; i < chicagoStartups.length; i++) {
+                chicagoStartups[i] = chicagoStartups[i].replace(/div/g, 'span');
+            }
+            toggleContainer.innerHTML = chicagoStartups.join(" ");
+            toggle = false;
+        }
+        else {
 
-        //<span> text </span> for printing out in line
-        //show and hide lists -> have one list that is printing out horizontal being showed when clicked and 
-        //another list that is printing out a vertical list being showed when clicked again
-
+        chicagoStartups.forEach( function(chicagoStartup, index) {
+            var childDiv = document.createElement('div');
+            var text = document.createTextNode(chicagoStartup);
+            childDiv.appendChild(text);
+            toggleContainer.appendChild(childDiv);
+        });
+        toggle = true;
+    }
+        return toggleContainer;
         /*
-        NOT DONE
-
         TODO: REVIEW THE CODE IN THE PROVIDED REVERSE EXAMPLE, USE JAVASCRIPT TO ADD A CLICKABLE BUTTON 
         CALLED "Toggle Display" ... WHEN THE USER CLICKS THE BUTTON, IT RENDERS THE DISPLAY OF THE COMPANY NAMES 
         FROM VERTICAL, TO HORIZONTAL.

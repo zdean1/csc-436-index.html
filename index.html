@@ -146,28 +146,24 @@
 
     function cleanAndCountCharacters() {
         console.log('CLEAN AND COUNT CHARACTERS');
-        //var cleanStartups = [];
         var cleanStartups = new Map();
 
         chicagoStartups.forEach(clean);
 
-
         function clean(name) {
             var cleanName = name.trim().replace(/[^a-zA-Z0-9 ]/g, '');
+            var cleanName = cleanName.replace(/ +(?= )/g,'');
             var cleanLength = cleanName.length;
             cleanStartups.set(cleanName,cleanLength);
 
-            //cleanStartups[cleanName] = cleanLength;
-            //cleanStartups[startupNameLength] = cleanName.length;
-            //cleanStartups.push(startupName, startupName.length);
         }
         console.log(cleanStartups);
 
         var cleanNameCount = document.getElementById("companyNamesContainer");
 
         var i = 0; 
-        for (var[key, value] of cleanStartups.entries()){
-            cleanNameCount.childNodes.item(i).innerHTML = (i + " ). " + key + ": " + value); 
+        for (var[name, length] of cleanStartups.entries()) {
+            cleanNameCount.childNodes.item(i).innerHTML = (i + " ). " + name + ": " + length); 
             i++;      
         }
 
@@ -207,6 +203,11 @@
     }
 
     function toggleDisplay() {
+
+        //<span> text </span> for printing out in line
+        //show and hide lists -> have one list that is printing out horizontal being showed when clicked and 
+        //another list that is printing out a vertical list being showed when clicked again
+
         /*
         NOT DONE
 
